@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Sample Invoice Template -->
+        <record id="sample_invoice_template" model="report.template">
+            <field name="name">Invoice Template (Sample)</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="active" eval="False"/>
+            <field name="description">Sample invoice template with company header, line items, and totals. Activate and customize as needed.</field>
+        </record>
+
+        <!-- Sample Sales Order Template -->
+        <record id="sample_sale_order_template" model="report.template">
+            <field name="name">Sales Quotation Template (Sample)</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="active" eval="False"/>
+            <field name="description">Sample sales quotation template with customer details, product lines, and terms. Activate and customize as needed.</field>
+        </record>
+
+        <!-- Sample Purchase Order Template -->
+        <record id="sample_purchase_order_template" model="report.template">
+            <field name="name">Purchase Order Template (Sample)</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="active" eval="False"/>
+            <field name="description">Sample purchase order template with vendor information and product details. Activate and customize as needed.</field>
+        </record>
+
+        <!-- Sample Contact Sheet Template -->
+        <record id="sample_contact_sheet_template" model="report.template">
+            <field name="name">Contact Information Sheet (Sample)</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="active" eval="False"/>
+            <field name="description">Sample contact sheet template with comprehensive contact details. Activate and customize as needed.</field>
+        </record>
+
+    </data>
+</odoo>

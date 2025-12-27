@@ -47,6 +47,7 @@
         
         # Data
         'data/report_paperformat.xml',
+        'data/default_templates.xml',
         
         # Views
         'views/report_template_views.xml',
