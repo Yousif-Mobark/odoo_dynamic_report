@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Template Designer Main Template -->
+    <t t-name="odoo_dynamic_report.TemplateDesigner" owl="1">
+        <div class="o_report_template_designer">
+            <!-- Header Toolbar -->
+            <div class="o_designer_toolbar">
+                <div class="o_toolbar_left">
+                    <h3 class="o_designer_title">
+                        <i class="fa fa-file-word-o"/> Template Designer
+                        <span t-if="state.template" class="text-muted">
+                            - <t t-esc="state.template.name"/>
+                        </span>
+                    </h3>
+                </div>
+                <div class="o_toolbar_right">
+                    <button class="btn btn-secondary" t-on-click="onUpload">
+                        <i class="fa fa-upload"/> Upload Template
+                    </button>
+                    <button class="btn btn-secondary" t-on-click="onDownload" 
+                            t-att-disabled="!state.template or !state.template.template_data">
+                        <i class="fa fa-download"/> Download
+                    </button>
+                    <button class="btn btn-info" t-on-click="onPreview"
+                            t-att-disabled="!state.template or !state.template.template_data">
+                        <i class="fa fa-eye"/> Preview
+                    </button>
+                    <button class="btn btn-primary" t-on-click="onSave"
+                            t-att-disabled="!state.isDirty">
+                        <i class="fa fa-save"/> Save
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="o_designer_content">
+                <!-- Loading Spinner -->
+                <div t-if="state.isLoading" class="o_designer_loading">
+                    <i class="fa fa-spinner fa-spin fa-3x"/>
+                    <p>Loading...</p>
+                </div>
+
+                <!-- Main Designer Area -->
+                <div t-else="" class="o_designer_main">
+                    <!-- Left Sidebar - Field Selector -->
+                    <div class="o_designer_sidebar">
+                        <div class="o_sidebar_header">
+                            <h4><i class="fa fa-database"/> Available Fields</h4>
+                            <p class="text-muted">
+                                Drag fields into your template or copy placeholders
+                            </p>
+                        </div>
+                        <div class="o_sidebar_content">
+                            <t t-if="state.template">
+                                <FieldSelector 
+                                    modelName="state.template.model_name"
+                                    onFieldInsert.bind="insertFieldPlaceholder"
+                                />
+                            </t>
+                            <div t-else="" class="alert alert-info">
+                                Please select a model first
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Center Area - Design Instructions -->
+                    <div class="o_designer_center" t-ref="designAreaRef">
+                        <div class="o_design_instructions">
+                            <div class="o_instruction_card">
+                                <i class="fa fa-info-circle fa-3x text-primary"/>
+                                <h3>How to Design Your Report</h3>
+                                
+                                <div class="o_instruction_steps">
+                                    <div class="o_step">
+                                        <div class="o_step_number">1</div>
+                                        <div class="o_step_content">
+                                            <h4>Create a DOCX Template</h4>
+                                            <p>Design your document in Microsoft Word or any DOCX editor</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="o_step">
+                                        <div class="o_step_number">2</div>
+                                        <div class="o_step_content">
+                                            <h4>Add Field Placeholders</h4>
+                                            <p>Use double curly braces syntax:</p>
+                                            <code>{{`{{field_name}}`}}</code>
+                                            <p class="mt-2">Examples:</p>
+                                            <ul>
+                                                <li><code>{{`{{name}}`}}</code> - Simple field</li>
+                                                <li><code>{{`{{partner_id.name}}`}}</code> - Related field</li>
+                                                <li><code>{{`{{date_order|date:'%Y-%m-%d'}}`}}</code> - Formatted date</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="o_step">
+                                        <div class="o_step_number">3</div>
+                                        <div class="o_step_content">
+                                            <h4>Upload Your Template</h4>
+                                            <p>Click "Upload Template" button above</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="o_step">
+                                        <div class="o_step_number">4</div>
+                                        <div class="o_step_content">
+                                            <h4>Test with Preview</h4>
+                                            <p>Use the "Preview" button to test with real data</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="o_tips">
+                                    <h4><i class="fa fa-lightbulb-o"/> Tips</h4>
+                                    <ul>
+                                        <li>Copy field placeholders from the left sidebar</li>
+                                        <li>Use tables for one2many fields</li>
+                                        <li>Format dates and numbers with pipes (|)</li>
+                                        <li>Keep formatting in Word, not in placeholders</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar - Placeholders List -->
+                    <div class="o_designer_sidebar_right">
+                        <div class="o_sidebar_header">
+                            <h4><i class="fa fa-list"/> Detected Placeholders</h4>
+                        </div>
+                        <div class="o_sidebar_content">
+                            <t t-if="state.placeholders.length > 0">
+                                <div class="o_placeholder_list">
+                                    <t t-foreach="state.placeholders" t-as="placeholder" t-key="placeholder">
+                                        <div class="o_placeholder_item">
+                                            <code>{{`{{${placeholder}}}`}}</code>
+                                            <div class="o_placeholder_actions">
+                                                <button class="btn btn-sm btn-link" 
+                                                        t-on-click="() => this.copyPlaceholder(placeholder)"
+                                                        title="Copy to clipboard">
+                                                    <i class="fa fa-copy"/>
+                                                </button>
+                                                <button class="btn btn-sm btn-link"
+                                                        t-on-click="() => this.validateField(placeholder)"
+                                                        title="Validate field">
+                                                    <i class="fa fa-check"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                            <div t-else="" class="alert alert-info">
+                                No placeholders detected yet. Upload a template to analyze.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden file input for upload -->
+            <input type="file" 
+                   accept=".docx" 
+                   style="display: none;" 
+                   t-ref="fileInput"
+                   t-on-change="onUploadTemplate"/>
+        </div>
+    </t>
+
+</templates>

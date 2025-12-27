@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Main Menu -->
+    <menuitem id="menu_report_builder_root"
+              name="Report Builder"
+              sequence="100"
+              web_icon="odoo_dynamic_report,static/description/icon.png"/>
+    
+    <!-- Report Templates Menu -->
+    <menuitem id="menu_report_templates"
+              name="Templates"
+              parent="menu_report_builder_root"
+              action="action_report_template"
+              sequence="10"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="menu_report_configuration"
+              name="Configuration"
+              parent="menu_report_builder_root"
+              sequence="90"
+              groups="base.group_system"/>
+
+</odoo>

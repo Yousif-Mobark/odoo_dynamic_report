@@ -1,0 +1,4 @@
+# Python dependencies for Odoo Dynamic Report Builder
+python-docx>=0.8.11
+lxml>=4.9.0
+Pillow>=10.0.0

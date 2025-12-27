@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Preview Wizard Form View -->
+    <record id="view_report_preview_wizard_form" model="ir.ui.view">
+        <field name="name">report.preview.wizard.form</field>
+        <field name="model">report.preview.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Preview Report">
+                <group>
+                    <field name="template_id" readonly="1"/>
+                    <field name="model_id" readonly="1"/>
+                    <field name="model_name" invisible="1"/>
+                    <field name="record_id" 
+                           options="{'no_create': True, 'no_open': True}"
+                           placeholder="Select a record to preview..."/>
+                </group>
+                <footer>
+                    <button string="Preview" name="action_preview" type="object" 
+                            class="btn-primary" attrs="{'invisible': [('record_id', '=', False)]}"/>
+                    <button string="Preview with First Record" name="action_preview_first" 
+                            type="object" class="btn-secondary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

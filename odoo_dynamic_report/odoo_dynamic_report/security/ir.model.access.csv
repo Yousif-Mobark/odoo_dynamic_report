@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_template_user,access_report_template_user,model_report_template,base.group_user,1,0,0,0
+access_report_template_system,access_report_template_system,model_report_template,base.group_system,1,1,1,1
+access_report_field_mapping_user,access_report_field_mapping_user,model_report_field_mapping,base.group_user,1,0,0,0
+access_report_field_mapping_system,access_report_field_mapping_system,model_report_field_mapping,base.group_system,1,1,1,1
+access_report_preview_wizard_user,access_report_preview_wizard_user,model_report_preview_wizard,base.group_user,1,1,1,1

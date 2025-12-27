@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Module Category -->
+    <record id="module_category_dynamic_reports" model="ir.module.category">
+        <field name="name">Dynamic Reports</field>
+        <field name="description">Manage dynamic report templates and generation</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- Report Designer Group -->
+    <record id="group_report_designer" model="res.groups">
+        <field name="name">Report Designer</field>
+        <field name="category_id" ref="module_category_dynamic_reports"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Can create, modify, and delete report templates</field>
+    </record>
+
+    <!-- Record Rules -->
+    <record id="report_template_company_rule" model="ir.rule">
+        <field name="name">Report Template: Multi-company</field>
+        <field name="model_id" ref="model_report_template"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True"/>
+    </record>
+
+</odoo>

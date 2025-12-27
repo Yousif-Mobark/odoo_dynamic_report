@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Field Selector Main Template -->
+    <t t-name="odoo_dynamic_report.FieldSelector" owl="1">
+        <div class="o_field_selector">
+            <!-- Search Box -->
+            <div class="o_field_search">
+                <input type="text" 
+                       class="form-control" 
+                       placeholder="Search fields..."
+                       t-on-input="onSearchInput"
+                       t-model="state.searchText"/>
+                <i class="fa fa-search o_search_icon"/>
+            </div>
+
+            <!-- Actions Bar -->
+            <div class="o_field_actions">
+                <button class="btn btn-sm btn-link" 
+                        t-on-click="toggleGrouping"
+                        title="Toggle grouping">
+                    <i class="fa fa-folder"/> Group by Type
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div t-if="state.isLoading" class="o_field_loading">
+                <i class="fa fa-spinner fa-spin"/>
+                Loading fields...
+            </div>
+
+            <!-- Field Tree -->
+            <div t-else="" class="o_field_tree">
+                <t t-if="state.filteredFields.length > 0">
+                    <t t-call="odoo_dynamic_report.FieldTreeNode" 
+                       t-foreach="state.filteredFields" 
+                       t-as="field" 
+                       t-key="field.path">
+                        <t t-set="depth" t-value="0"/>
+                    </t>
+                </t>
+                <div t-else="" class="o_field_empty">
+                    <i class="fa fa-search"/>
+                    <p>No fields found</p>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Field Tree Node Template -->
+    <t t-name="odoo_dynamic_report.FieldTreeNode" owl="1">
+        <div class="o_field_node" 
+             t-att-data-field-path="field.path"
+             t-att-style="'padding-left: ' + (field.depth * 20) + 'px'">
+            
+            <div class="o_field_item"
+                 draggable="true"
+                 t-on-dragstart="(ev) => this.onDragStart(ev, field)"
+                 t-on-dragend="onDragEnd"
+                 t-on-click="() => this.selectField(field)"
+                 t-att-class="{'o_field_selected': state.selectedField?.path === field.path}">
+                
+                <!-- Expand/Collapse Button -->
+                <button t-if="field.children?.length > 0"
+                        class="o_field_toggle"
+                        t-on-click.stop="() => this.toggleFieldExpansion(field)">
+                    <i t-att-class="field.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'"/>
+                </button>
+                <span t-else="" class="o_field_toggle_placeholder"/>
+
+                <!-- Field Icon -->
+                <i class="o_field_icon fa"
+                   t-att-class="getFieldIcon(field.type)"
+                   t-att-style="'color: ' + getFieldTypeColor(field.type)"
+                   t-att-title="field.type"/>
+
+                <!-- Field Name -->
+                <span class="o_field_name" t-att-title="getFieldTooltip(field)">
+                    <t t-esc="field.string"/>
+                    <small class="text-muted">(<t t-esc="field.name"/>)</small>
+                </span>
+
+                <!-- Field Actions -->
+                <div class="o_field_actions">
+                    <!-- Copy Button -->
+                    <button class="btn btn-xs btn-link o_field_action"
+                            t-on-click.stop="() => this.copyFieldPlaceholder(field)"
+                            title="Copy placeholder">
+                        <i class="fa fa-copy"/>
+                    </button>
+
+                    <!-- Insert Button -->
+                    <button class="btn btn-xs btn-link o_field_action"
+                            t-on-click.stop="() => this.insertField(field)"
+                            title="Insert field">
+                        <i class="fa fa-plus"/>
+                    </button>
+
+                    <!-- Relation Indicator -->
+                    <span t-if="field.relation" class="o_field_relation" title="Related Model">
+                        <i class="fa fa-link"/>
+                        <small t-esc="field.relation"/>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Children Fields (if expanded) -->
+            <div t-if="field.isExpanded and field.children?.length > 0" class="o_field_children">
+                <t t-call="odoo_dynamic_report.FieldTreeNode" 
+                   t-foreach="field.children" 
+                   t-as="childField"
+                   t-key="childField.path">
+                    <t t-set="field" t-value="childField"/>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>

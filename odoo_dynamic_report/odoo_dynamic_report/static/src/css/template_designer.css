@@ -1,0 +1,558 @@
+/* Odoo Dynamic Report - Template Designer Styles */
+
+/* ============================================
+   Template Designer Main Container
+   ============================================ */
+
+.o_report_template_designer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f9f9f9;
+}
+
+/* ============================================
+   Toolbar
+   ============================================ */
+
+.o_designer_toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.o_toolbar_left,
+.o_toolbar_right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.o_designer_title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.o_designer_title i {
+    color: #2c5aa0;
+    margin-right: 8px;
+}
+
+.o_designer_toolbar .btn {
+    margin-left: 8px;
+}
+
+/* ============================================
+   Content Area
+   ============================================ */
+
+.o_designer_content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.o_designer_main {
+    display: flex;
+    flex: 1;
+    gap: 0;
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+
+.o_designer_loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #999;
+}
+
+.o_designer_loading i {
+    margin-bottom: 20px;
+    color: #2c5aa0;
+}
+
+.o_designer_loading p {
+    font-size: 16px;
+}
+
+/* ============================================
+   Sidebars
+   ============================================ */
+
+.o_designer_sidebar,
+.o_designer_sidebar_right {
+    width: 300px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.o_designer_sidebar_right {
+    border-right: none;
+    border-left: 1px solid #e0e0e0;
+}
+
+.o_sidebar_header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f5f5f5;
+}
+
+.o_sidebar_header h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.o_sidebar_header p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.o_sidebar_content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* ============================================
+   Center Design Area
+   ============================================ */
+
+.o_designer_center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.o_designer_center.drag-over {
+    background: #e8f5e9;
+    border: 2px dashed #4caf50;
+}
+
+/* ============================================
+   Instructions Card
+   ============================================ */
+
+.o_design_instructions {
+    max-width: 700px;
+    width: 100%;
+}
+
+.o_instruction_card {
+    background: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.o_instruction_card > i {
+    margin-bottom: 20px;
+}
+
+.o_instruction_card h3 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 24px;
+}
+
+.o_instruction_steps {
+    text-align: left;
+    margin: 30px 0;
+}
+
+.o_step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.o_step_number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #2c5aa0;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.o_step_content h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.o_step_content p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.o_step_content code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #d63384;
+    font-size: 13px;
+}
+
+.o_step_content ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.o_step_content li {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+/* ============================================
+   Tips Section
+   ============================================ */
+
+.o_tips {
+    text-align: left;
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 6px;
+}
+
+.o_tips h4 {
+    margin: 0 0 15px 0;
+    color: #856404;
+    font-size: 16px;
+}
+
+.o_tips ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.o_tips li {
+    margin: 8px 0;
+    color: #856404;
+    font-size: 14px;
+}
+
+/* ============================================
+   Placeholder List
+   ============================================ */
+
+.o_placeholder_list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.o_placeholder_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s;
+}
+
+.o_placeholder_item:hover {
+    background: #ebebeb;
+    border-color: #d0d0d0;
+}
+
+.o_placeholder_item code {
+    flex: 1;
+    background: transparent;
+    color: #d63384;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.o_placeholder_actions {
+    display: flex;
+    gap: 4px;
+}
+
+.o_placeholder_actions .btn {
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+/* ============================================
+   Field Selector Styles
+   ============================================ */
+
+.o_field_selector {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.o_field_search {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.o_field_search input {
+    padding-right: 35px;
+    font-size: 13px;
+}
+
+.o_search_icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+}
+
+.o_field_actions {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.o_field_tree {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.o_field_node {
+    margin: 2px 0;
+}
+
+.o_field_item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: grab;
+    border-radius: 4px;
+    transition: all 0.2s;
+    gap: 8px;
+}
+
+.o_field_item:hover {
+    background: #f0f0f0;
+}
+
+.o_field_item.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.o_field_item.o_field_selected {
+    background: #e3f2fd;
+    border-left: 3px solid #2c5aa0;
+}
+
+.o_field_toggle {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.o_field_toggle:hover {
+    color: #333;
+}
+
+.o_field_toggle_placeholder {
+    width: 20px;
+    display: inline-block;
+}
+
+.o_field_icon {
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.o_field_name {
+    flex: 1;
+    font-size: 13px;
+    color: #333;
+}
+
+.o_field_name small {
+    font-size: 11px;
+    margin-left: 4px;
+}
+
+.o_field_actions {
+    display: flex;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.o_field_item:hover .o_field_actions {
+    opacity: 1;
+}
+
+.o_field_action {
+    padding: 2px 6px;
+    font-size: 12px;
+    color: #666;
+}
+
+.o_field_action:hover {
+    color: #2c5aa0;
+}
+
+.o_field_relation {
+    font-size: 10px;
+    color: #999;
+    margin-left: 8px;
+}
+
+.o_field_children {
+    margin-left: 0;
+}
+
+.o_field_loading,
+.o_field_empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #999;
+    text-align: center;
+}
+
+.o_field_loading i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.o_field_empty i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .o_designer_sidebar,
+    .o_designer_sidebar_right {
+        width: 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .o_designer_main {
+        flex-direction: column;
+    }
+
+    .o_designer_sidebar,
+    .o_designer_sidebar_right {
+        width: 100%;
+        max-height: 300px;
+    }
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+.o_sidebar_content::-webkit-scrollbar,
+.o_field_tree::-webkit-scrollbar,
+.o_designer_center::-webkit-scrollbar {
+    width: 8px;
+}
+
+.o_sidebar_content::-webkit-scrollbar-track,
+.o_field_tree::-webkit-scrollbar-track,
+.o_designer_center::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.o_sidebar_content::-webkit-scrollbar-thumb,
+.o_field_tree::-webkit-scrollbar-thumb,
+.o_designer_center::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.o_sidebar_content::-webkit-scrollbar-thumb:hover,
+.o_field_tree::-webkit-scrollbar-thumb:hover,
+.o_designer_center::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.o_field_node {
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+    .o_designer_toolbar,
+    .o_designer_sidebar,
+    .o_designer_sidebar_right {
+        display: none;
+    }
+
+    .o_designer_center {
+        padding: 0;
+    }
+}
